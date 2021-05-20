@@ -26,7 +26,7 @@ Run the tests :heavy_check_mark:
 $ npm test
 ```
 
-## Run it to send slack message
+## Check if files exist
 
 This is most basic example of how to run the action.
 
