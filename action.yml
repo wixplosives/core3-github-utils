@@ -1,38 +1,16 @@
-name: 'action-slack-message'
-description: 'Sends slack messages'
+name: 'Core3 Github Utils'
+description: 'Utilities for Github Actions'
 author: 'Wix.com'
 inputs:
-  channel:
+  util:
     required: true
-    description: 'channel to send message'
-    default: 'core3-ci'
-  slack_token:
-    required: true
-    description: 'slack token'
-    default: ''
-  status:
+    description: Which util to use
+  files:
     required: false
-    description: 'failed | success | true | false | info'
-    default: ''
-  text:
+    description: check-files-existence - comma separated file paths to check
+  allow_failure:
     required: false
-    description: 'Optional text'
-    default: ''
-  custom_job_name:
-    required: false
-    description: 'if job has custom name defined in `name` field pass it here, otherwise it won`t find inner job in github api'
-  action_link:
-    required: false
-    description: 'custom direct link to action'
-    default: ''
-  matrix_os:
-    required: false
-    description: 'current os in the matrix'
-    default: ${{matrix.os}}
-  matrix_node:
-    required: false
-    description: 'current node version in the matrix'
-    default: ${{matrix.node-version}}
+    description: check-files-existence - fail if file(s) don't exist
 runs:
   using: 'node12'
   main: 'dist/index.js'
