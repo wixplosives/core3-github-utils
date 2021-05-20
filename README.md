@@ -1,11 +1,8 @@
-[![Build Status](https://github.com/wixplosives/action-slack-message/workflows/tests/badge.svg)](https://github.com/wixplosives/action-slack-message/actions)
+[![Build Status](https://github.com/wixplosives/core3-github-utils/workflows/tests/badge.svg)](https://github.com/wixplosives/core3-github-utils/actions)
 
-# Slack Message Action
+# Core3 Github Utils
 
-- Use this action to send slack notification from github actions
-- This action also let you extract the inner jobs link for each workflow
-
-This action includes compilation support, tests, a validation workflow, publishing, and versioning guidance.
+- Utils to use in Github Actions
 
 ## Install
 
@@ -33,61 +30,17 @@ $ npm test
 
 This is most basic example of how to run the action.
 
+`util: check-files-existence`: the util to use
+
+`files: string`: comma separated file paths to check
+
+`allow_failure?: bool`: optional. fails workflow if at least 1 file doesn't exist
+
 ```
-- name: Notify slack
-  uses: 'wixplosives/action-slack-message@master'
+- name: Check if files exist
+  uses: wixplosives/core3-github-utils@master
   with:
-      text: 'My text is so awesome'
-      channel: 'testing-yarden-public'
-      slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-```
-
-### Run it to notify about job status
-
-`if always()` is required because we want to send status update even if action fails.
-
-```
-- name: Notify slack
-  if: always()
-  uses: 'wixplosives/action-slack-message@master'
-  with:
-      text: 'My text is so awesome'
-      status: ${{job.status}}
-      channel: 'testing-yarden-public'
-      slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-### **Custom job name**
-```
-
-### When you define a custom job name, like this
-
-```yaml
-notify-custom-name:
-  runs-on: ${{ matrix.os }}
-  name: some custom name # <<< CUSTOM JOB NAME DEFINED HERE
-  strategy:
-    matrix:
-      os: [ubuntu-latest, windows-latest]
-```
-
-You need to pass as an argument the custom job name, as the following:
-
-```yaml
-      steps:
-          - name: Notify slack
-            uses: 'wixplosives/action-slack-message@master'
-            ...
-            with:
-                ...
-                custom_job_name: some custom name
-```
-
-## Usage in a private repo:
-
-Add github.token as an environment variable
-
-```yaml
-- name: Notify slack
-  uses: 'wixplosives/action-slack-message@master'
-  env:
-    GITHUB_TOKEN: ${{ github.token }}
+    util: check-files-existence
+    files: src/main.ts, src/check-files-existence.ts
+    allow_failure: true
 ```
