@@ -2,7 +2,7 @@
 
 # Slack Message Action
 
-- Use this action to send slack notification from github actions.
+- Use this action to send slack notification from github actions
 - This action also let you extract the inner jobs link for each workflow
 
 This action includes compilation support, tests, a validation workflow, publishing, and versioning guidance.
