@@ -47,6 +47,8 @@ This is most basic example of how to run the action.
 
 ## Read file to output
 
+step.<step-id>.
+
 `util: read-file`: The util to use
 
 `filepath: string`: Filepath to read and place on output
@@ -57,10 +59,13 @@ This is most basic example of how to run the action.
 
 ```
 - name: Read file to output
+  id: package
   uses: wixplosives/core3-github-utils@master
   with:
     util: read-file
-    filepath: src/main.ts, src/check-files-existence.ts
+    filepath: ./package.json
     allow_failure: true
     trim: true
+- name: Echo package.json
+  run: echo "${{ steps.package.outputs.content }}"
 ```
