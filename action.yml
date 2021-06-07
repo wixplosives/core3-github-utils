@@ -4,13 +4,20 @@ author: 'Wix.com'
 inputs:
   util:
     required: true
-    description: Which util to use
+    description: Which util to use (check-files-existence | read-file)
   files:
     required: false
     description: check-files-existence - comma separated file paths to check
   allow_failure:
     required: false
-    description: check-files-existence - fail if file(s) don't exist
+    description: check-files-existence & read-file - fail if file(s) don't exist
+  filepath:
+    required: false
+    description: read-file - Filepath to read
+  trim:
+    required: false
+    description: read-file - Boolean
+
 runs:
   using: 'node12'
   main: 'dist/index.js'

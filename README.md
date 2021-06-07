@@ -34,7 +34,7 @@ This is most basic example of how to run the action.
 
 `files: string`: comma separated file paths to check
 
-`allow_failure?: bool`: optional. fails workflow if at least 1 file doesn't exist
+`allow_failure?: bool`: Optional - false as default. fails workflow if at least 1 file doesn't exist
 
 ```
 - name: Check if files exist
@@ -43,4 +43,24 @@ This is most basic example of how to run the action.
     util: check-files-existence
     files: src/main.ts, src/check-files-existence.ts
     allow_failure: true
+```
+
+## Read file to output
+
+`util: read-file`: The util to use
+
+`filepath: string`: Filepath to read and place on output
+
+`allow_failure?: bool`: Optional - false as default. Fails if requested file doesn't exist.
+
+`trim?: bool`: Optional - false as default. Trims the text from the file.
+
+```
+- name: Read file to output
+  uses: wixplosives/core3-github-utils@master
+  with:
+    util: read-file
+    filepath: src/main.ts, src/check-files-existence.ts
+    allow_failure: true
+    trim: true
 ```

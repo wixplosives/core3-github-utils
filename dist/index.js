@@ -96,12 +96,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
 const check_files_existence_1 = __nccwpck_require__(302);
+const read_file_1 = __nccwpck_require__(201);
 async function run() {
     const util = core.getInput('util', { required: true });
     if (util === 'check-files-existence') {
         const files = core.getInput('files', { required: true });
         const failure = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
         await check_files_existence_1.checkFilesExistence({ files, failure });
+    }
+    if (util === 'read-file') {
+        const filepath = core.getInput('filepath', { required: true });
+        const failure = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
+        const trim = (core.getInput('trim') || 'false').toUpperCase() === 'TRUE';
+        await read_file_1.readFile({ filepath, failure, trim });
     }
 }
 // eslint-disable-next-line github/no-then
@@ -110,6 +117,58 @@ run().catch((e) => {
     console.error(e);
     core.setFailed(e.message);
 });
+
+
+/***/ }),
+
+/***/ 201:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.readFile = void 0;
+const core = __importStar(__nccwpck_require__(186));
+const fs_1 = __importDefault(__nccwpck_require__(747));
+const readFile = async ({ filepath, failure, trim }) => {
+    try {
+        let content = await fs_1.default.promises.readFile(filepath, 'utf8');
+        if (trim) {
+            content = content.trim();
+        }
+        core.setOutput('content', content);
+    }
+    catch (err) {
+        if (failure) {
+            core.setFailed(`Can't find file: ${filepath}`);
+        }
+        else {
+            core.info(`Can't find file: ${filepath}`);
+        }
+    }
+};
+exports.readFile = readFile;
 
 
 /***/ }),
