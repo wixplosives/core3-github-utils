@@ -47,8 +47,6 @@ This is most basic example of how to run the action.
 
 ## Read file to output
 
-step.<step-id>.
-
 `util: read-file`: The util to use
 
 `filepath: string`: Filepath to read and place on output
