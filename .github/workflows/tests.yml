@@ -24,12 +24,12 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: Single file - exist
-        uses: 'wixplosives/core3-github-utils@master'
+        uses: 'wixplosives/core3-github-utils@yarden-deps'
         with:
           util: 'check-files-existence'
           files: src/main.ts
       - name: Multiple files - exist
-        uses: 'wixplosives/core3-github-utils@master'
+        uses: 'wixplosives/core3-github-utils@yarden-deps'
         with:
           util: 'check-files-existence'
           files: src/main.ts, src/check-files-existence.ts
@@ -40,7 +40,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: WCS Sanity test
-        uses: wixplosives/core3-github-utils@master
+        uses: wixplosives/core3-github-utils@yarden-deps
         with:
           util: wcs-sanity
           url: 'https://wixplosives.github.io/static-sites/wcs-example-project/index.html'
@@ -48,7 +48,7 @@ jobs:
           allow_failure: true
           image: true
       - name: check that image exist
-        uses: 'wixplosives/core3-github-utils@master'
+        uses: 'wixplosives/core3-github-utils@yarden-deps'
         with:
           util: 'check-files-existence'
           files: screenshot.png
