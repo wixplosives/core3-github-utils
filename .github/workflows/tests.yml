@@ -43,7 +43,6 @@ jobs:
       PLAYWRIGHT_BROWSERS_PATH: $HOME/pw-browsers
     steps:
       - run: npm i playwright
-          PLAYWRIGHT_BROWSERS_PATH=$HOME/pw-browsers
       - name: WCS Sanity test
         uses: wixplosives/core3-github-utils@pw-sanity
         with:
