@@ -40,7 +40,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: WCS Sanity test
-        uses: wixplosives/core3-github-utils@master
+        uses: wixplosives/core3-github-utils@yarden/add-playwright-sanity
         with:
           util: wcs-sanity
           url: 'https://wixplosives.github.io/static-sites/wcs-example-project/index.html'
