@@ -42,7 +42,7 @@ jobs:
     env:
       PLAYWRIGHT_BROWSERS_PATH: $HOME/pw-browsers
     steps:
-      - run: npm i playwright-chromium@1.8.0
+      # - run: npm i playwright-chromium@1.8.0
       - name: WCS Sanity test
         uses: wixplosives/core3-github-utils@pw-sanity
         with:
