@@ -42,17 +42,22 @@ jobs:
     env:
       PLAYWRIGHT_BROWSERS_PATH: $HOME/pw-browsers
     steps:
-      # - run: npm i playwright-chromium@1.8.0
-      - name: WCS Sanity test
-        uses: wixplosives/core3-github-utils@pw-sanity
-        with:
-          util: wcs-sanity
-          url: 'https://wixplosives.github.io/static-sites/wcs-example-project/index.html'
-          check-string: 'Swim Swim Swim'
-          allow_failure: true
-          image: true
-      - name: check that image exist
-        uses: 'wixplosives/core3-github-utils@master'
-        with:
-          util: 'check-files-existence'
-          files: screenshot.png
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: microsoft/playwright-github-action@v1
+      - name: Install dependencies and run tests
+        run: npm install && npm test-sanity
+
+      # - name: WCS Sanity test
+      #   uses: wixplosives/core3-github-utils@pw-sanity
+      #   with:
+      #     util: wcs-sanity
+      #     url: 'https://wixplosives.github.io/static-sites/wcs-example-project/index.html'
+      #     check-string: 'Swim Swim Swim'
+      #     allow_failure: true
+      #     image: true
+      # - name: check that image exist
+      #   uses: 'wixplosives/core3-github-utils@master'
+      #   with:
+      #     util: 'check-files-existence'
+      #     files: screenshot.png
