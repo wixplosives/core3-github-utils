@@ -67,3 +67,26 @@ This is most basic example of how to run the action.
 - name: Echo package.json
   run: echo "${{ steps.package.outputs.content }}"
 ```
+
+## WCS Sanity test
+
+`util: wcs-sanity`: The util to use
+
+`url: string`: A URL for a deployed WCS.
+
+`check-string?: string`: Optional - A string to check on the first simulation.
+
+`allow_failure?: bool`: Optional - false as default. Fails workflow if sanity fails.
+
+`image?: bool`: Optional - save image as `screenshot.png`
+
+```
+- name: WCS Sanity test
+  uses: wixplosives/core3-github-utils@master
+  with:
+    util: wcs-sanity
+    url: 'https://some.url.com/wcs'
+    check-string: 'Swim Swim Swim'
+    allow_failure: true
+    image: true
+```

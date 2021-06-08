@@ -28,7 +28,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.7"
+    "@actions/core": "^1.2.7",
+    "playwright-core": "^1.11.1"
   },
   "devDependencies": {
     "@ts-tools/node": "^2.1.1",

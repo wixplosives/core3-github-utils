@@ -33,3 +33,22 @@ jobs:
         with:
           util: 'check-files-existence'
           files: src/main.ts, src/check-files-existence.ts
+  wcs-sanity:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: WCS Sanity test
+        uses: wixplosives/core3-github-utils@master
+        with:
+          util: wcs-sanity
+          url: 'https://wixplosives.github.io/static-sites/wcs-example-project/index.html'
+          check-string: 'Swim Swim Swim'
+          allow_failure: true
+          image: true
+      - name: check that image exist
+        uses: 'wixplosives/core3-github-utils@master'
+        with:
+          util: 'check-files-existence'
+          files: screenshot.png
