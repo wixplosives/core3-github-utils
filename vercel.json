@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "dist/index.js": {
+      "includeFiles": "node_modules/playwright-core/browsers.json"
+    }
+  }
+}
