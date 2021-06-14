@@ -4,7 +4,7 @@ author: 'Wix.com'
 inputs:
   util:
     required: true
-    description: Which util to use (check-files-existence | read-file | wcs-sanity)
+    description: Which util to use (check-files-existence | read-file )
   files:
     required: false
     description: check-files-existence - comma separated file paths to check
