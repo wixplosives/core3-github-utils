@@ -29,7 +29,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.4.0",
-    "playwright-core": "^1.11.1"
+    "playwright-core": "^1.12.2"
   },
   "devDependencies": {
     "@ts-tools/node": "^2.1.1",
