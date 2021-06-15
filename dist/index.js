@@ -186,7 +186,8 @@ const parseFailureReport = (content) => {
     const parsedContent = JSON.parse(content);
     let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${os_1.EOL}|-------------------|--------|--------| ---|${os_1.EOL}`;
     for (const failTest of parsedContent['failures']) {
-        parsedTable = parsedTable.concat(`|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${failTest.err.stack}\`|${os_1.EOL}`);
+        const cleanErr = failTest.err.stack.replace(/\\n/g, '').trim();
+        parsedTable = parsedTable.concat(`|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${cleanErr}\`|${os_1.EOL}`);
     }
     return parsedTable;
 };
