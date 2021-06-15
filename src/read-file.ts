@@ -38,15 +38,14 @@ export const readFile = async ({ filepath, failure, trim, parse }: IReadFile): P
     }
 };
 
-const parseFailureReport = (content: string) => {
+export const parseFailureReport = (content: string) => {
     const parsedContent = JSON.parse(content);
 
-    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error
-|-------------------|--------|--------| ---|`;
+    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${EOL}|-------------------|--------|--------| ---|${EOL}`;
 
     for (const failTest of parsedContent['failures']) {
         parsedTable = parsedTable.concat(
-            `${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|${failTest.err.stack}|${EOL}`
+            `|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${failTest.err.stack}\`|${EOL}`
         );
     }
 

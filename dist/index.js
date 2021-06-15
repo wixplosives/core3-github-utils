@@ -150,7 +150,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.readFile = void 0;
+exports.parseFailureReport = exports.readFile = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(747));
 const os_1 = __nccwpck_require__(87);
 const core = __importStar(__nccwpck_require__(186));
@@ -163,7 +163,7 @@ const readFile = async ({ filepath, failure, trim, parse }) => {
         if (parse === 'mocha-failure-report') {
             // eslint-disable-next-line no-console
             console.log('Parsing mocha json failure report...');
-            content = parseFailureReport(content);
+            content = exports.parseFailureReport(content);
         }
         if (parse === 'json-array') {
             // eslint-disable-next-line no-console
@@ -184,13 +184,13 @@ const readFile = async ({ filepath, failure, trim, parse }) => {
 exports.readFile = readFile;
 const parseFailureReport = (content) => {
     const parsedContent = JSON.parse(content);
-    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error
-|-------------------|--------|--------| ---|`;
+    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${os_1.EOL}|-------------------|--------|--------| ---|${os_1.EOL}`;
     for (const failTest of parsedContent['failures']) {
-        parsedTable = parsedTable.concat(`${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|${failTest.err.stack}|${os_1.EOL}`);
+        parsedTable = parsedTable.concat(`|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${failTest.err.stack}\`|${os_1.EOL}`);
     }
     return parsedTable;
 };
+exports.parseFailureReport = parseFailureReport;
 const parseJsonArray = (content) => {
     const parsedContent = JSON.parse(content);
     return parsedContent.map((element) => `${element}`).join(os_1.EOL);
