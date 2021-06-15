@@ -55,6 +55,8 @@ This is most basic example of how to run the action.
 
 `trim?: bool`: Optional - false as default. Trims the text from the file.
 
+`parse?: string`: Optional - parse as: mocha-failure-report | json-array
+
 ```
 - name: Read file to output
   id: package
