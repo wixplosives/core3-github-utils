@@ -17,6 +17,9 @@ inputs:
   trim:
     required: false
     description: read-file - Boolean
+  parse:
+    required: false
+    description: 'read-file - string: mocha-failure-report | json-array'
 runs:
   using: 'node12'
   main: 'dist/index.js'

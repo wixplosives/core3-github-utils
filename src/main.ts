@@ -16,7 +16,8 @@ async function run(): Promise<void> {
         const filepath: string = core.getInput('filepath', { required: true });
         const failure: boolean = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
         const trim: boolean = (core.getInput('trim') || 'false').toUpperCase() === 'TRUE';
-        await readFile({ filepath, failure, trim });
+        const parse: string = core.getInput('parse');
+        await readFile({ filepath, failure, trim, parse });
     }
 }
 
