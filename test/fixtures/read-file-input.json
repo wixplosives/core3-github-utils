@@ -1,0 +1,128 @@
+{
+  "failures": [
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "duration": 1,
+      "currentRetry": 1,
+      "err": {
+        "message": "expected 1 to equal 2",
+        "showDiff": true,
+        "actual": "1",
+        "expected": "2",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected 1 to equal 2\n    at Context.<anonymous> (packages/git-commands/test/git-commands.unit.ts:39:22)"
+      }
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "duration": 0,
+      "currentRetry": 1,
+      "err": {
+        "message": "expected 1 to equal 2",
+        "showDiff": true,
+        "actual": "1",
+        "expected": "2",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected 1 to equal 2\n    at Context.<anonymous> (packages/git-commands/test/git-commands.unit.ts:39:22)"
+      }
+    }
+  ],
+  "tests": [
+    {
+      "title": "!!fake unit git - pass",
+      "fullTitle": "Git commands !!fake unit git - pass",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "duration": 1,
+      "currentRetry": 1,
+      "err": {
+        "message": "expected 1 to equal 2",
+        "showDiff": true,
+        "actual": "1",
+        "expected": "2",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected 1 to equal 2\n    at Context.<anonymous> (packages/git-commands/test/git-commands.unit.ts:39:22)"
+      }
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "!!fake unit git - pass",
+      "fullTitle": "Git commands !!fake unit git - pass",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "duration": 0,
+      "currentRetry": 1,
+      "err": {
+        "message": "expected 1 to equal 2",
+        "showDiff": true,
+        "actual": "1",
+        "expected": "2",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected 1 to equal 2\n    at Context.<anonymous> (packages/git-commands/test/git-commands.unit.ts:39:22)"
+      }
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "passes": [
+    {
+      "title": "!!fake unit git - pass",
+      "fullTitle": "Git commands !!fake unit git - pass",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "!!fake unit git - pass",
+      "fullTitle": "Git commands !!fake unit git - pass",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "!!fake unit git - fail and retry",
+      "fullTitle": "Git commands !!fake unit git - fail and retry",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "stats": {
+    "suites": 2,
+    "tests": 6,
+    "passes": 2,
+    "pending": 2,
+    "failures": 2,
+    "start": "2021-06-15T09:26:42.533Z",
+    "end": "2021-06-15T09:28:10.444Z",
+    "duration": 80304
+  }
+}

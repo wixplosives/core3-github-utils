@@ -44,7 +44,7 @@ export const parseFailureReport = (content: string) => {
     let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${EOL}|-------------------|--------|--------| ---|${EOL}`;
 
     for (const failTest of parsedContent['failures']) {
-        const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').trim();
+        const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').replace(/\s\s+/g, ' ');
         parsedTable = parsedTable.concat(
             `|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${cleanErr}\`|${EOL}`
         );
