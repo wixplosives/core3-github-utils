@@ -109,7 +109,8 @@ async function run() {
         const filepath = core.getInput('filepath', { required: true });
         const failure = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
         const trim = (core.getInput('trim') || 'false').toUpperCase() === 'TRUE';
-        await read_file_1.readFile({ filepath, failure, trim });
+        const parse = core.getInput('parse');
+        await read_file_1.readFile({ filepath, failure, trim, parse });
     }
 }
 // eslint-disable-next-line github/no-then
@@ -150,13 +151,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.readFile = void 0;
-const core = __importStar(__nccwpck_require__(186));
 const fs_1 = __importDefault(__nccwpck_require__(747));
-const readFile = async ({ filepath, failure, trim }) => {
+const os_1 = __nccwpck_require__(87);
+const core = __importStar(__nccwpck_require__(186));
+const readFile = async ({ filepath, failure, trim, parse }) => {
     try {
         let content = await fs_1.default.promises.readFile(filepath, 'utf8');
         if (trim) {
             content = content.trim();
+        }
+        if (parse === 'mocha-failure-report') {
+            // eslint-disable-next-line no-console
+            console.log('Parsing mocha json failure report...');
+            content = parseFailureReport(content);
+        }
+        if (parse === 'json-array') {
+            // eslint-disable-next-line no-console
+            console.log('Parsing json array...');
+            content = parseJsonArray(content);
         }
         core.setOutput('content', content);
     }
@@ -170,6 +182,19 @@ const readFile = async ({ filepath, failure, trim }) => {
     }
 };
 exports.readFile = readFile;
+const parseFailureReport = (content) => {
+    const parsedContent = JSON.parse(content);
+    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error
+|-------------------|--------|--------| ---|`;
+    for (const failTest of parsedContent['failures']) {
+        parsedTable = parsedTable.concat(`${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|${failTest.err.stack}|${os_1.EOL}`);
+    }
+    return parsedTable;
+};
+const parseJsonArray = (content) => {
+    const parsedContent = JSON.parse(content);
+    return parsedContent.map((element) => `${element}`).join(os_1.EOL);
+};
 
 
 /***/ }),

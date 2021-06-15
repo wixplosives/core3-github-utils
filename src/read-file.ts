@@ -17,10 +17,14 @@ export const readFile = async ({ filepath, failure, trim, parse }: IReadFile): P
         }
 
         if (parse === 'mocha-failure-report') {
+            // eslint-disable-next-line no-console
+            console.log('Parsing mocha json failure report...');
             content = parseFailureReport(content);
         }
 
         if (parse === 'json-array') {
+            // eslint-disable-next-line no-console
+            console.log('Parsing json array...');
             content = parseJsonArray(content);
         }
 
@@ -51,5 +55,5 @@ const parseFailureReport = (content: string) => {
 
 const parseJsonArray = (content: string) => {
     const parsedContent = JSON.parse(content);
-    return parsedContent.map((element: string) => `${element}${EOL}`);
+    return parsedContent.map((element: string) => `${element}`).join(EOL);
 };
