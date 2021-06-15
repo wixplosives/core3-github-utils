@@ -111,13 +111,6 @@ async function run() {
         const trim = (core.getInput('trim') || 'false').toUpperCase() === 'TRUE';
         await read_file_1.readFile({ filepath, failure, trim });
     }
-    // if (util === 'wcs-sanity') {
-    //     const url: string = core.getInput('url', { required: true });
-    //     const failure: boolean = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
-    //     const checkString: string = core.getInput('check-string') || 'false';
-    //     const image: boolean = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
-    //     await wcsSanity({ url, checkString, image, failure });
-    // }
 }
 // eslint-disable-next-line github/no-then
 run().catch((e) => {
