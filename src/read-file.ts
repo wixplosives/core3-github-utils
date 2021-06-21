@@ -41,7 +41,7 @@ export const readFile = async ({ filepath, failure, trim, parse }: IReadFile): P
 export const parseFailureReport = (content: string) => {
     const parsedContent = JSON.parse(content);
 
-    if (parsedContent.failure.length === 0) {
+    if (parsedContent.failures.length === 0) {
         return 'All of the new tests passed successfully.';
     }
 
