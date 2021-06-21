@@ -184,9 +184,12 @@ const readFile = async ({ filepath, failure, trim, parse }) => {
 exports.readFile = readFile;
 const parseFailureReport = (content) => {
     const parsedContent = JSON.parse(content);
+    if (parsedContent.failure.length === 0) {
+        return 'All of the new tests passed successfully.';
+    }
     let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${os_1.EOL}|-------------------|--------|--------| ---|${os_1.EOL}`;
     for (const failTest of parsedContent['failures']) {
-        const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').trim();
+        const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').replace(/\s\s+/g, ' ');
         parsedTable = parsedTable.concat(`|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${cleanErr}\`|${os_1.EOL}`);
     }
     return parsedTable;
