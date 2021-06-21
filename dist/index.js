@@ -187,7 +187,7 @@ const parseFailureReport = (content) => {
     if (parsedContent.failures.length === 0) {
         return 'All of the new tests passed successfully.';
     }
-    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${os_1.EOL}|-------------------|--------|--------| ---|${os_1.EOL}`;
+    let parsedTable = `Failed new tests on your PR:${os_1.EOL}| Suite & Test name | Retries | Duration | Error |${os_1.EOL}|-------------------|--------|--------| ---|${os_1.EOL}`;
     for (const failTest of parsedContent['failures']) {
         const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').replace(/\s\s+/g, ' ');
         parsedTable = parsedTable.concat(`|${failTest.fullTitle}|${failTest.currentRetry}|${failTest.duration}|\`${cleanErr}\`|${os_1.EOL}`);

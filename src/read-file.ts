@@ -45,7 +45,7 @@ export const parseFailureReport = (content: string) => {
         return 'All of the new tests passed successfully.';
     }
 
-    let parsedTable = `| Suite & Test name |  Retries |  Duration | Error |${EOL}|-------------------|--------|--------| ---|${EOL}`;
+    let parsedTable = `Failed new tests on your PR:${EOL}| Suite & Test name | Retries | Duration | Error |${EOL}|-------------------|--------|--------| ---|${EOL}`;
 
     for (const failTest of parsedContent['failures']) {
         const cleanErr = failTest.err.stack.replace(/\r?\n|\r/g, '').replace(/\s\s+/g, ' ');
