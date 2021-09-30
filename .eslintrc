@@ -42,7 +42,10 @@
         "@typescript-eslint/prefer-regexp-exec": "off",
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "sort-imports": "off",
+        "i18n-text/no-en": "off",
+        "filenames/match-regex": "off"
       }
     }
   ]
